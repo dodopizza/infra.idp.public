@@ -91,6 +91,11 @@ spec:
       enabled: true
     local_command_queue:
       enabled: true
+    blackbox:
+      enabled: true
+      urls:
+        - https://example.com/health
+        - https://api.example.com/status
 ```
 
 | Тип | Описание | Дополнительные параметры |
@@ -102,6 +107,7 @@ spec:
 | `pods` | Алерты для подов (restarts, OOM и т.д.) | — |
 | `cronjob` | Алерты для CronJob | — |
 | `local_command_queue` | Алерты для Local Command Queue | — |
+| `blackbox` | Алерты для HTTP/HTTPS проб (доступность endpoints) | `urls` (список адресов для проверки) |
 
 #### Алерты для монолита
 
