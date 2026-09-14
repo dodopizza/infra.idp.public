@@ -93,9 +93,14 @@ spec:
       enabled: true
     blackbox:
       enabled: true
-      urls:
-        - https://example.com/health
-        - https://api.example.com/status
+      targets:
+        - url: https://example.com/health
+        - url: https://api.example.com/status
+        - url: https://cdn.example.com/importmap.json
+          isExternal: true # Флаг `isExternal` сигнализирует о том, что данный
+                           # target является "внешним", т.е. обслуживается вне кластера.
+                           # Для таких target'ов не будет осуществляться проверка
+                           # работоспособности "напрямую в кластер". default: false
 ```
 
 | Тип | Описание | Дополнительные параметры |
@@ -107,7 +112,7 @@ spec:
 | `pods` | Алерты для подов (restarts, OOM и т.д.) | — |
 | `cronjob` | Алерты для CronJob | — |
 | `local_command_queue` | Алерты для Local Command Queue | — |
-| `blackbox` | Алерты для HTTP/HTTPS проб (доступность endpoints) | `urls` (список адресов для проверки) |
+| `blackbox` | Алерты для HTTP/HTTPS проб (доступность endpoints) | `targets` (список target'ов для проверки) |
 
 #### Алерты для монолита
 
